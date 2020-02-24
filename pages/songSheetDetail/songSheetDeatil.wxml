@@ -1,0 +1,49 @@
+<view class="songSheet">
+  <van-toast id="van-toast" />
+  <view class="songSheet-header">
+    <view class="background">
+      <image class="" src="{{songSheetDetail.coverImgUrl}}" mode="scaleToFill" />
+    </view>
+    <view class="coverImg">
+      <image class="" src="{{songSheetDetail.coverImgUrl}}" mode="aspectFill" />
+    </view>
+    <view class="header-right">
+      <view class="title">
+        <view class="text">{{songSheetDetail.name}}</view>
+      </view>
+      <view class="creator">
+        <view class="avatar">
+          <image class="" src="{{songSheetDetail.creator.avatarUrl}}" mode="aspectFill" />
+        </view>
+        <view class="name">{{songSheetDetail.creator.nickname}}</view>
+        <view class="iconfont icon-arrow-sl"></view>
+      </view>
+      <view class="desc">
+        <view class="text">{{songSheetDetail.description}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="songSheet-content">
+    <view class="content-header">
+      <view class="iconfont icon-zanting" data-index="{{0}}" bind:tap="play"></view>
+      <view class="playAll" data-index="{{0}}" bind:tap="play">
+        <span class="text1">播放全部</span>
+        <span class="text2">(共{{songSheetDetail.tracks.length}}首)</span>
+      </view>
+    </view>
+    <view class="songList">
+      <view class="song-item" 
+      wx:for="{{songSheetDetail.tracks}}" 
+      wx:key="{{index}}"
+      data-index="{{index}}"
+      bind:tap="play">
+        <view class="number">{{index + 1}}</view>
+        <view class="song-content">
+          <view class="title">{{item.name}}</view>
+          <view class="artist">{{item.ar[0].name}} - {{item.al.name}}</view>
+        </view>
+        <view class="addPlayList" data-index="{{index}}" catch:tap="addPlayList">+</view>
+      </view>
+    </view>
+  </view>
+</view>
